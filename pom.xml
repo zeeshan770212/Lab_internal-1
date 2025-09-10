@@ -5,9 +5,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>in.kmit</groupId>
-  <artifactId>SAH</artifactId>
+  <artifactId>SAH</artfactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
 
   <name>SAH Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
@@ -23,7 +23,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.13.1</version>
+
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -52,7 +52,7 @@
         <plugin>
           <artifactId>maven-war-plugin</artifactId>
           <version>3.4.0</version>
-        </plugin>
+       
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
           <version>3.1.2</version>

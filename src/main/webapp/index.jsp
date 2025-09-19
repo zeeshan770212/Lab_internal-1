@@ -59,7 +59,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Education Assessment Pro</h1>
+        <h1>Edu Assessment Pro</h1>
         <p>Welcome! Get started with registration or login to continue.</p>
 
         <a href="registration.jsp" class="register">Register for Exam</a>

@@ -1252,4 +1252,156 @@ Outcome of Exercise-2
 
 
 
-  
+
+
+⭐ WEEK 12 – Creation of Virtual Machine & Deployment of Web Application (Complete Notes)
+1️⃣ Create Maven Web Java Project & Push to GitHub
+
+Create a Maven Web Java Project in Eclipse
+
+Initialize git in the project
+
+git init
+git add .
+git commit –m “first commit”
+git remote add origin <your GitHub repo>
+git push -u origin main
+
+2️⃣ Create a Virtual Machine (EC2 Instance) in AWS Academy
+Steps:
+
+Login to Canvas → AWS Academy Learner Lab → Start Lab → AWS Console
+
+Go to EC2 → Launch Instance
+
+Configure:
+
+Name: ubuntu-server
+
+AMI: Ubuntu Server 22.04 (Free Tier Eligible)
+
+Architecture: 64-bit
+
+Instance Type: t2.micro
+
+Key Pair: Create new → download .pem file
+
+Security Group: Allow
+
+SSH (22)
+
+HTTP (80)
+
+HTTPS (443)
+
+Storage: 8GB
+
+Click Launch Instance
+
+After instance starts → get Public IP
+
+3️⃣ Connect to the Ubuntu VM using SSH
+PowerShell / Git Bash:
+
+Go to the folder containing the .pem file:
+
+cd C:\Users\<yourName>\Downloads
+
+
+Connect:
+
+ssh -i "labkey.pem" ubuntu@<public-ip>
+
+
+Allow by typing: yes
+
+4️⃣ Install Required Software in Ubuntu VM
+
+Inside Ubuntu terminal:
+
+sudo apt update
+sudo apt-get install docker.io -y
+sudo apt install git -y
+sudo apt install nano -y
+
+5️⃣ Clone Your Application from GitHub
+git clone <your-github-repo-link>
+cd <your-project-folder>
+
+
+Check if .war is present:
+
+ls target
+
+6️⃣ Create Dockerfile
+
+Create file:
+
+nano Dockerfile
+
+
+Paste:
+
+FROM tomcat:9.0
+COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
+EXPOSE 8080
+
+
+Save:
+
+CTRL + O → Enter
+
+CTRL + X
+
+7️⃣ Build Docker Image
+sudo docker build -t myapp .
+
+
+Check:
+
+sudo docker images
+
+8️⃣ Run Docker Container
+Add inbound rule in EC2:
+
+Type: Custom TCP
+
+Port: 6060
+
+Source: 0.0.0.0/0
+
+Run container:
+
+sudo docker run -d --name app-demo -p 6060:8080 myapp
+
+
+Check:
+
+sudo docker ps
+
+9️⃣ Access Web Application Publicly
+
+Open browser:
+
+http://<public-ip>:6060
+
+
+Your Maven web application is now deployed live.
+
+🔟 Stop Everything Safely
+A. Stop container
+sudo docker stop app-demo
+
+B. (Optional) Remove container & image
+sudo docker rm app-demo
+sudo docker rmi myapp
+
+C. Stop EC2 machine
+
+AWS Console → EC2 → Instance State → Stop
+
+D. End Canvas Lab
+
+Canvas → AWS Academy Learner Lab → End Lab
+
+🎉 YOU HAVE COMPLETED THE FULL DEPLOYMENT PROCESS
